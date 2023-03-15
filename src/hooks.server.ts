@@ -1,7 +1,7 @@
 // src/hooks.server.ts
 import { PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY } from '$env/static/public';
 import { createSupabaseServerClient } from '@supabase/auth-helpers-sveltekit';
-import type { Handle } from '@sveltejs/kit';
+import { redirect, type Handle } from '@sveltejs/kit';
 
 export const handle: Handle = async ({ event, resolve }) => {
 	event.locals.supabase = createSupabaseServerClient({
@@ -19,8 +19,17 @@ export const handle: Handle = async ({ event, resolve }) => {
 		const {
 			data: { session }
 		} = await event.locals.supabase.auth.getSession();
+		console.log('handle gook');
 		return session;
 	};
+
+	const userSession = await event.locals.getSession();
+
+	if (event.url.pathname.startsWith('/protected_routes')) {
+		if (!userSession) {
+			throw redirect(303, '/');
+		}
+	}
 
 	return resolve(event, {
 		/**

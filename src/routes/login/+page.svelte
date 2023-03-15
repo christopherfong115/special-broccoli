@@ -22,7 +22,7 @@
 		class="flex flex-col gap-7 rounded-md p-4 text-black"
 	>
 		{#if !data.session}
-			<h1 class="text-center font-bold text-3xl text-blue-400">Login</h1>
+			<h1 class="text-center font-bold text-3xl text-blue-400 uppercase">start</h1>
 			<div class="flex flex-col gap-1">
 				<!-- svelte-ignore a11y-label-has-associated-control
 				<label>Username</label> -->

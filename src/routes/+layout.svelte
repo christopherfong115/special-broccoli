@@ -1,7 +1,27 @@
 <script lang="ts">
 	import '../app.css';
+	import { invalidate } from '$app/navigation';
+	import { onMount } from 'svelte';
+	import type { LayoutData } from './$types';
 
-	const paths = [['login', '/login']];
+	export let data: LayoutData;
+
+	$: ({ supabase } = data);
+
+	onMount(() => {
+		const {
+			data: { subscription }
+		} = supabase.auth.onAuthStateChange(() => {
+			invalidate('supabase:auth');
+		});
+
+		return () => subscription.unsubscribe();
+	});
+
+	const paths = [
+		['login', '/login'],
+		['register', '/register']
+	];
 </script>
 
 <nav class="relative text-white justify-between flex px-10 items-center font-bold p-5">

@@ -6,7 +6,8 @@ export const load: PageServerLoad = async ({ locals }) => {
 	if (!session) {
 		throw redirect(303, '/');
 	}
-	const { data, error: err } = await locals.supabase.from('tempdata').select('*');
 
-	return { user: session.user, tempdata: data ?? [] };
+	const { data, error: err } = await locals.supabase.from('users').select('*');
+
+	return { session, users: data };
 };

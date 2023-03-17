@@ -35,6 +35,11 @@
 					<button> profile </button>
 				</a>
 			</li>
+			<li class="hover:text-purple-500">
+				<a href="/protected_routes/FindFriends">
+					<button> add_friends </button>
+				</a>
+			</li>
 		{/if}
 		{#each paths as path}
 			<li class="hover:text-purple-500">

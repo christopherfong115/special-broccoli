@@ -33,6 +33,17 @@
 		</div>
 		<div class="flex flex-col gap-1">
 			<!-- svelte-ignore a11y-label-has-associated-control
+			<label>Username</label> -->
+			<input
+				name="username"
+				type="text"
+				required
+				class="pl-1 outline focus:outline-slate-400 outline-slate-300 rounded-md bg-slate-400 text-white placeholder:text-white"
+				placeholder="Username"
+			/>
+		</div>
+		<div class="flex flex-col gap-1">
+			<!-- svelte-ignore a11y-label-has-associated-control
 			<label>Password</label> -->
 			<input
 				name="password"

@@ -2,8 +2,6 @@ import { error, fail, redirect } from '@sveltejs/kit';
 import type { Actions } from './$types';
 import { AuthApiError } from '@supabase/supabase-js';
 
-export async function load({ locals }) {}
-
 export const actions = {
 	login: async ({ request, locals }) => {
 		const body = await request.formData();

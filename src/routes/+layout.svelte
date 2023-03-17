@@ -29,6 +29,13 @@
 		<a href="/">HOME</a>
 	</div>
 	<ul class="flex flex-row gap-7">
+		{#if data.session}
+			<li class="hover:text-purple-500">
+				<a href="/protected_routes/profile">
+					<button> profile </button>
+				</a>
+			</li>
+		{/if}
 		{#each paths as path}
 			<li class="hover:text-purple-500">
 				<a href={path[1]}>{path[0]}</a>
@@ -37,7 +44,7 @@
 		{#if data.session}
 			<li class="hover:text-green-500">
 				<form action="/logout" method="POST">
-					<button> Signout </button>
+					<button> signout </button>
 				</form>
 			</li>
 		{/if}

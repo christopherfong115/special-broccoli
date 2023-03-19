@@ -22,12 +22,12 @@
 				{profile?.username}
 			</div>
 		</h1>
-		<form class="mx-auto w-full text-center">
+		<!-- <form class="mx-auto w-full text-center">
 			<a
 				href="/protected_routes/editprofile"
 				class="px-2 py-1 w-full outline outline-gray-500 hover:outline-slate-300 hover:text-slate-400"
 				>Edit Profile</a
 			>
-		</form>
+		</form> -->
 	{/if}
 </div>

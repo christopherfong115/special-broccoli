@@ -6,12 +6,12 @@
 	let { session, profile } = data;
 </script>
 
-<div
+<div class="text-white">
+	<a href="/protected_routes/profile">{'<-'}</a>
+</div>
+<!-- <div
 	class="text-white absolute -translate-x-1/2 flex flex-col gap-3 -translate-y-1/2 left-1/2 top-1/2"
 >
-	<div class="text-white">
-		<a href="/protected_routes/profile">{'<-'}</a>
-	</div>
 	{#if profile}
 		<div class="">
 			<img
@@ -40,4 +40,4 @@
 			</button>
 		</form>
 	{/if}
-</div>
+</div> -->

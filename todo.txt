@@ -1,0 +1,3 @@
+need to fix update name so it appears on all dbs
+ - only keep sessionuserid for friend and curr user
+ - refetch users before render to page to get most updated list

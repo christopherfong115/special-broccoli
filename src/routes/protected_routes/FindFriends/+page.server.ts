@@ -87,7 +87,6 @@ export const actions: Actions = {
 			.select('*')
 			.eq('sessionuserid', frienduserid);
 
-		console.log(check);
 		console.log('no check');
 		if (check.length > 0) {
 			console.log('checkig');

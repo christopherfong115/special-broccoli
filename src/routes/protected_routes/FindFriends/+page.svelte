@@ -11,7 +11,6 @@
 
 	if (form) {
 		acceptedid.push(form.friendid);
-		console.log(acceptedid);
 	}
 
 	let { session, users, friends, pendingRequests } = data;

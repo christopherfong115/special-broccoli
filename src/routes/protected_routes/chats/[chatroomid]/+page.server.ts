@@ -2,19 +2,50 @@ import { redirect, type Actions } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ locals }) => {
-	// const mySubscription = await locals.supabase
-	// 	.channel('any')
-	// 	.on(
-	// 		'postgres_changes',
-	// 		{ event: 'INSERT', schema: 'public', table: 'mainchat' },
-	// 		async (payload: any) => {
-	// 			console.log(payload);
+	const session = await locals.getSession();
+
+	// const channel = locals.supabase.channel('online-users', {
+	// 	config: {
+	// 		presence: {
+	// 			key: session.user.id
 	// 		}
-	// 	)
-	// 	.subscribe();
+	// 	}
+	// });
+
+	// type OnlineData = {
+	// 	online_at: string;
+	// 	presence_ref: string;
+	// };
+
+	// type OnlineUser = {
+	// 	userid: string;
+	// 	lastonline: OnlineData[];
+	// };
+
+	// let users_online: any[] = [];
+
+	// channel.on('presence', { event: 'sync' }, () => {
+	// 	// console.log('Online users: ', channel.presenceState());
+	// });
+
+	// channel.on('presence', { event: 'join' }, ({ newPresences }: { newPresences: any }) => {
+	// 	// console.log('New users have joined: ', newPresences);
+	// });
+
+	// channel.on('presence', { event: 'leave' }, ({ leftPresences }: { leftPresences: any }) => {
+	// 	// console.log('Users have left: ', leftPresences);
+	// });
+
+	// channel.subscribe(async (status: any) => {
+	// 	if (status === 'SUBSCRIBED') {
+	// 		const status = await channel.track({ online_at: new Date().toDateString() });
+	// 		// console.log(status);
+	// 	}
+	// });
 
 	const { data: chats, error: err } = await locals.supabase.from('mainchat').select('*');
 
+	// console.log(users_online);
 	return { chats };
 };
 

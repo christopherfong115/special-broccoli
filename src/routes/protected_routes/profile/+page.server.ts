@@ -14,6 +14,5 @@ export const load: PageServerLoad = async ({ locals }) => {
 		.eq('sessionuserid', session.user.id)
 		.single();
 
-	console.log(profile);
 	return { session, profile };
 };

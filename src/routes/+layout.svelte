@@ -31,6 +31,11 @@
 	<ul class="flex flex-row gap-7">
 		{#if data.session}
 			<li class="hover:text-purple-500">
+				<a href="/protected_routes/chats/main">
+					<button> global_chat </button>
+				</a>
+			</li>
+			<li class="hover:text-purple-500">
 				<a href="/protected_routes/profile">
 					<button> profile </button>
 				</a>

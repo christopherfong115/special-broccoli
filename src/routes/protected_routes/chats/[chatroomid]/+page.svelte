@@ -10,6 +10,7 @@
 	let { session, chats } = data;
 	// chatStore.set(chats);
 
+	chatStore.set(chats);
 	const subscription = supabase
 		.channel('send-msg')
 		.on('postgres_changes', { event: '*', schema: 'public' }, (payload) => {
@@ -40,19 +41,24 @@
 		<div class="pl-10">
 			<div class="text-white flex items-center gap-4">
 				<img alt="pfp" class="aspect-square w-14 object-cover rounded-full" src={chat.avatar} />
-				<h1 class="font-extrabold">{chat.username}</h1>
+				<div>
+					<h1 class="font-extrabold">{chat.username}</h1>
+					<div>{new Date(chat.created_at).toDateString()}</div>
+				</div>
 			</div>
 			<div class="text-white pl-10 pt-4">{chat.contents}</div>
 		</div>
 	{/each}
 </div>
-<form class="pl-10" action="?/sendMsg" use:enhance method="POST">
-	<input
-		type="text-black placeholder:text-black bg-slate-400"
-		name="msg"
-		required
-		bind:value={message}
-		placeholder="send a message..."
-	/>
-	<button class="text-white">submit</button>
-</form>
+<div class="">
+	<form class="" action="?/sendMsg" use:enhance method="POST">
+		<input
+			type="text-black placeholder:text-black bg-slate-400"
+			name="msg"
+			required
+			bind:value={message}
+			placeholder="send a message..."
+		/>
+		<button class="text-white">submit</button>
+	</form>
+</div>

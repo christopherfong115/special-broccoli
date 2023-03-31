@@ -1,31 +1,30 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
-	import { chatStore } from '$lib/stores/chats';
-	import { onMount } from 'svelte';
+	import { onDestroy } from 'svelte';
 	import type { PageData } from './$types';
-
+	import supabase from '$lib/supabase';
+	import chatStore from '$lib/stores/chats';
+	import { get } from 'svelte/store';
 	export let data: PageData;
 
-	let { chats } = data;
+	let { session, chats } = data;
+	// chatStore.set(chats);
 
-	// $: ({ supabase } = data);
+	const subscription = supabase
+		.channel('send-msg')
+		.on('postgres_changes', { event: '*', schema: 'public' }, (payload) => {
+			chatStore.set([...get(chatStore), payload.new]);
+		})
+		.subscribe();
 
+	onDestroy(() => {
+		return () => supabase.removeChannel(subscription);
+	});
 	// const dbFilter = {
 	// 	schema: 'public',
 	// 	table: 'mainchat',
 	// 	event: 'INSERT'
 	// };
-
-	// let chatsTemp: any[] = [];
-
-	// const channel = supabase.channel('#random');
-
-	// channel
-	// 	.on('postgres_changes', dbFilter, (payload: any) => {
-	// 		chatsTemp.push(payload.new);
-	// 		console.log(payload.new);
-	// 	})
-	// 	.subscribe();
 
 	let message = '';
 </script>
@@ -36,10 +35,18 @@
 		<li>{chat2}</li>
 	{/each}
 </ul> -->
-{#each chats as chat}
-	<div class="text-white">{chat.contents}</div>
-{/each}
-<form class="" action="?/sendMsg" use:enhance method="POST">
+<div class="flex flex-col gap-5 pb-10">
+	{#each $chatStore as chat}
+		<div class="pl-10">
+			<div class="text-white flex items-center gap-4">
+				<img alt="pfp" class="aspect-square w-14 object-cover rounded-full" src={chat.avatar} />
+				<h1 class="font-extrabold">{chat.username}</h1>
+			</div>
+			<div class="text-white pl-10 pt-4">{chat.contents}</div>
+		</div>
+	{/each}
+</div>
+<form class="pl-10" action="?/sendMsg" use:enhance method="POST">
 	<input
 		type="text-black placeholder:text-black bg-slate-400"
 		name="msg"

@@ -43,10 +43,13 @@ export const load: PageServerLoad = async ({ locals }) => {
 	// 	}
 	// });
 
-	const { data: chats, error: err } = await locals.supabase.from('mainchat').select('*');
+	const { data: chats, error: err } = await locals.supabase
+		.from('mainchat')
+		.select('*')
+		.order('created_at', { ascending: true });
 
 	// console.log(users_online);
-	return { chats };
+	return { session, chats };
 };
 
 export const actions: Actions = {
@@ -70,7 +73,8 @@ export const actions: Actions = {
 			userid: session.user.id,
 			contents: msg,
 			username: profile.username,
-			roomid: '1'
+			roomid: '1',
+			avatar: profile.avatar
 		});
 	}
 };

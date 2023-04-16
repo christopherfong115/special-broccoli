@@ -45,18 +45,24 @@
 					<button> add_friends </button>
 				</a>
 			</li>
-		{/if}
-		{#each paths as path}
 			<li class="hover:text-purple-500">
-				<a href={path[1]}>{path[0]}</a>
+				<a href="/protected_routes/games">
+					<button> games </button>
+				</a>
 			</li>
-		{/each}
-		{#if data.session}
-			<li class="hover:text-green-500">
-				<form action="/logout" method="POST">
-					<button> signout </button>
-				</form>
-			</li>
+			{#if data.session}
+				<li class="hover:text-green-500">
+					<form action="/logout" method="POST">
+						<button> signout </button>
+					</form>
+				</li>
+			{/if}
+		{:else}
+			{#each paths as path}
+				<li class="hover:text-purple-500">
+					<a href={path[1]}>{path[0]}</a>
+				</li>
+			{/each}
 		{/if}
 	</ul>
 </nav>

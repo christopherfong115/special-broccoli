@@ -1,19 +1,28 @@
 <script lang="ts">
-	import type { PageData, ActionData } from './$types';
+	import type { PageData, ActionData, PageServerData } from './$types';
 	import { enhance } from '$app/forms';
 
-	export let data: PageData;
+	export let data: PageServerData;
+	let { session, profile } = data;
 </script>
 
 <div
 	class="flex flex-col xs:w-[85%] sm:w-1/2 lg:w-1/3 xl:w-1/4 2xl:w-1/6 absolute -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 p-4 outline outline-4 outline-blue-400"
 >
 	<div class="translate-y-20 mb-40">
-		<img
-			class="rounded-full outline outline-blue-300 mx-auto object-cover aspect-square w-44"
-			alt="pic-sad"
-			src={'/sad.jpg'}
-		/>
+		{#if session}
+			<img
+				class="rounded-full outline outline-blue-300 mx-auto object-cover aspect-square w-44"
+				alt="pic-sad"
+				src={`${profile.avatar}`}
+			/>
+		{:else}
+			<img
+				class="rounded-full outline outline-blue-300 mx-auto object-cover aspect-square w-44"
+				alt="pic-sad"
+				src={'/sad.jpg'}
+			/>
+		{/if}
 	</div>
 	<form
 		method="POST"
@@ -21,7 +30,7 @@
 		use:enhance
 		class="flex flex-col gap-7 rounded-md p-4 text-black"
 	>
-		{#if !data.session}
+		{#if !session}
 			<h1 class="text-center font-bold text-3xl text-blue-400 uppercase">start</h1>
 			<div class="flex flex-col gap-1">
 				<!-- svelte-ignore a11y-label-has-associated-control
@@ -51,12 +60,12 @@
 					>get</button
 				>
 			</div>
-		{:else if data.session}
+		{:else if session}
 			<div class="text-white text-center font-bold">
 				Welcome back,
 				{' '}
 
-				<div class="text-amber-400 font-bold">{data.session.user.email}</div>
+				<div class="text-amber-400 font-bold">{profile.username}</div>
 			</div>
 		{/if}
 	</form>

@@ -8,7 +8,6 @@
 	export let data: PageData;
 
 	let { session, chats } = data;
-	// chatStore.set(chats);
 
 	chatStore.set(chats);
 	const subscription = supabase
@@ -21,21 +20,11 @@
 	onDestroy(() => {
 		return () => supabase.removeChannel(subscription);
 	});
-	// const dbFilter = {
-	// 	schema: 'public',
-	// 	table: 'mainchat',
-	// 	event: 'INSERT'
-	// };
 
 	let message = '';
 </script>
 
 <h1>Chat room</h1>
-<!-- <ul class="text-white">
-	{#each $chatStore.msgs as chat2}
-		<li>{chat2}</li>
-	{/each}
-</ul> -->
 <div class="flex flex-col gap-5 pb-10">
 	{#each $chatStore as chat}
 		<div class="pl-10">

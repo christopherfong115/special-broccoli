@@ -31,22 +31,22 @@
 	<ul class="flex flex-row gap-7">
 		{#if data.session}
 			<li class="hover:text-purple-500">
-				<a href="/protected_routes/chats/main">
+				<a href="/authenticated/chats/main">
 					<button> global_chat </button>
 				</a>
 			</li>
 			<li class="hover:text-purple-500">
-				<a href="/protected_routes/profile">
+				<a href="/authenticated/profile">
 					<button> profile </button>
 				</a>
 			</li>
 			<li class="hover:text-purple-500">
-				<a href="/protected_routes/FindFriends">
+				<a href="/authenticated/FindFriends">
 					<button> add_friends </button>
 				</a>
 			</li>
 			<li class="hover:text-purple-500">
-				<a href="/protected_routes/games">
+				<a href="/authenticated/games">
 					<button> games </button>
 				</a>
 			</li>

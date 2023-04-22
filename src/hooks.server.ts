@@ -25,7 +25,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 
 	const userSession = await event.locals.getSession();
 
-	if (event.url.pathname.startsWith('/protected_routes')) {
+	if (event.url.pathname.startsWith('/authenticated')) {
 		if (!userSession) {
 			throw redirect(303, '/');
 		}

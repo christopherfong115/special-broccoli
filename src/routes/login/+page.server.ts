@@ -1,6 +1,18 @@
 import { error, fail, redirect } from '@sveltejs/kit';
-import type { Actions } from './$types';
+import type { Actions, PageServerLoad } from './$types';
 import { AuthApiError } from '@supabase/supabase-js';
+
+export const load: PageServerLoad = async ({ locals }) => {
+	const session = await locals.getSession();
+
+	const { data: profile } = await locals.supabase
+		.from('users')
+		.select('username, email, avatar')
+		.eq('sessionuserid', session.user.id)
+		.single();
+
+	return { session, profile };
+};
 
 export const actions = {
 	login: async ({ request, locals }) => {

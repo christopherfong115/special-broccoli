@@ -124,23 +124,12 @@
 		<div>Profile</div>
 	</div>
 	{#if displayAgents}
-		<div class="grid grid-cols-5 md:grid-cols-2 gap-4 items-center justify-items-center">
+		<div class="grid lg:grid-cols-5 md:grid-cols-2 gap-4 items-center justify-items-center">
 			{#each ValAgents as agent}
-				<div
-					class={`text-white text-center bg-gradient-to-t from-[#${agent.backgroundGradientColors[0].substring(
-						0,
-						6
-					)}] from-25% via-[#${agent.backgroundGradientColors[1].substring(
-						0,
-						6
-					)}] via-50% via-[#${agent.backgroundGradientColors[2].substring(
-						0,
-						6
-					)}] via-75% to-[#${agent.backgroundGradientColors[3].substring(0, 6)}] to-100%`}
-				>
+				<div class={`text-white text-center`}>
 					<div class={`relative`}>
 						<img
-							class={`absolute -translate-y-32 opacity-30 scale-75 md:scale-50 md:-translate-y-44 -z-40`}
+							class={`absolute lg:-translate-y-32 opacity-30 lg:scale-75 md:scale-50 md:-translate-y-44 -z-40`}
 							title={`${agent.displayName}`}
 							alt="player_bg"
 							src={agent.background}
@@ -152,7 +141,7 @@
 						alt="champ-pfp"
 						src={agent.fullPortrait}
 					/>
-					<div>
+					<div class="font-bold mt-3">
 						{agent.displayName}
 					</div>
 					<div class="flex gap-4">

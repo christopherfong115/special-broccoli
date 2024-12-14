@@ -56,6 +56,7 @@
 		displayAgents = false;
 		valSection = false;
 	}
+	
 	function displayVal() {
 		leagueSection = false;
 		displayChamps = false;
@@ -114,6 +115,8 @@
 				</div>
 			{/each}
 		</div>
+	{:else}
+		<div>{'LOOL'}</div>
 	{/if}
 {/if}
 

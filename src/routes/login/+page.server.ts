@@ -5,13 +5,16 @@ import { AuthApiError } from '@supabase/supabase-js';
 export const load: PageServerLoad = async ({ locals }) => {
 	const session = await locals.getSession();
 
-	const { data: profile } = await locals.supabase
-		.from('users')
-		.select('username, email, avatar')
-		.eq('sessionuserid', session.user.id)
-		.single();
+	if (session) {
+		const { data: profile } = await locals.supabase
+			.from('users')
+			.select('username, email, avatar')
+			.eq('sessionuserid', session.user.id)
+			.single();
+		return { session, profile };
+	}
 
-	return { session, profile };
+	return { session: null, profile: null };
 };
 
 export const actions = {
@@ -41,6 +44,6 @@ export const actions = {
 			});
 		}
 
-		return { success: true };
+		throw redirect(303, 'authenticated/profile');
 	}
 } satisfies Actions;

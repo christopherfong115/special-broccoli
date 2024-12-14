@@ -1,3 +1,4 @@
+import type { Actions } from '@sveltejs/kit';
 import type { PageServerLoad } from '../$types';
 
 export const load: PageServerLoad = async () => {
@@ -15,4 +16,8 @@ export const load: PageServerLoad = async () => {
 	);
 
 	return { lolchamps: retval, valagents: filteredAgents };
+};
+
+export const actions: Actions = {
+	searchUser: async ({ request, locals }) => {}
 };

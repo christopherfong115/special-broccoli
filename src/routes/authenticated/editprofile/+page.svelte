@@ -9,7 +9,7 @@
 <div class="text-white">
 	<a href="/protected_routes/profile">{'<-'}</a>
 </div>
-<!-- <div
+<div
 	class="text-white absolute -translate-x-1/2 flex flex-col gap-3 -translate-y-1/2 left-1/2 top-1/2"
 >
 	{#if profile}
@@ -40,4 +40,4 @@
 			</button>
 		</form>
 	{/if}
-</div> -->
+</div>

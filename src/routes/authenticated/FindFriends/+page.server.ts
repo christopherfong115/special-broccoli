@@ -122,7 +122,7 @@ export const actions: Actions = {
 			.select('*')
 			.eq('sessionuserid', session.user.id);
 
-		const { data: add, error: err } = await locals.supabase.from('friends').insert({
+		await locals.supabase.from('friends').insert({
 			sessionuserid: session.user.id,
 			username: profile[0].username,
 			avatar: profile[0].avatar,
@@ -132,7 +132,7 @@ export const actions: Actions = {
 			friendconfirm: true
 		});
 
-		const { data: updateFriendid, error: erruf } = await locals.supabase
+		await locals.supabase
 			.from('friends')
 			.update({
 				friendconfirm: true
